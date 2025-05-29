@@ -12,7 +12,6 @@
       background: #ffe600;
       color: #111;
     }
-
     header {
       background: #ff4500;
       color: #fff;
@@ -20,19 +19,12 @@
       padding: 2rem 1rem;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-
-    header h1 {
-      font-size: 3rem;
-      text-shadow: 2px 2px #000;
-    }
-
     nav {
       display: flex;
       justify-content: center;
       background: #000;
       flex-wrap: wrap;
     }
-
     nav a {
       padding: 1rem;
       color: #ffe600;
@@ -40,40 +32,89 @@
       font-weight: bold;
       transition: background 0.3s;
     }
-
     nav a:hover {
       background: #ff4500;
     }
-
     section {
       padding: 2rem;
       border-bottom: 4px dashed #000;
     }
-
     h2 {
       font-size: 2rem;
       color: #ff4500;
     }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
+    .video-carousel {
+      position: relative;
     }
-
-    .card {
+    .video-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+      scroll-behavior: smooth;
+    }
+    .short-wrapper {
+      width: 180px;
+      aspect-ratio: 9/16;
+      flex: 0 0 auto;
+      cursor: pointer;
+    }
+    .short-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff4500;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .arrow-left {
+      left: 0;
+    }
+    .arrow-right {
+      right: 0;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .video-tile, .card {
       background: #00bfff;
       padding: 1rem;
-      border: 3px dotted #000;
-      box-shadow: 5px 5px 0 #111;
-      cursor: pointer;
+      box-shadow: 5px 5px 0 #000;
+      border: 3px dotted #111;
       text-align: center;
+      cursor: pointer;
     }
-
-    .card:hover {
+    .video-tile:hover, .card:hover {
       background: #ffcc00;
     }
-
+    .video-tile iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #000;
+      margin-bottom: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
     .modal {
       display: none;
       position: fixed;
@@ -86,7 +127,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .modal-content {
       background: #fff;
       max-width: 800px;
@@ -98,7 +138,6 @@
       max-height: 90vh;
       overflow: auto;
     }
-
     .close-btn {
       position: absolute;
       top: 10px;
@@ -112,7 +151,6 @@
       height: 40px;
       cursor: pointer;
     }
-
     iframe, img {
       max-width: 100%;
       height: auto;
@@ -129,6 +167,7 @@
 
   <nav>
     <a href="#porque">¿Por qué?</a>
+    <a href="#videos">Vídeos</a>
     <a href="#experimentos">Experimenta</a>
     <a href="#juegos">Juegos</a>
     <a href="#historias">Historias</a>
@@ -139,22 +178,67 @@
     <p>Porque están en los videojuegos, en tus series favoritas, en los memes, en el universo, ¡y hasta en las redes sociales!</p>
   </section>
 
+  <section id="videos">
+    <h2>🎬 Vídeos matemáticos que te van a flipar</h2>
+    <div class="video-carousel">
+      <button class="carousel-arrow arrow-left" onclick="scrollShorts(-1)">←</button>
+      <div class="video-scroll" id="shorts-container">
+        <div class="short-wrapper" onclick="openModal('https://www.youtube.com/embed/mhmLlaWCPeI')"><iframe src="https://www.youtube.com/embed/mhmLlaWCPeI" allowfullscreen></iframe></div>
+        <div class="short-wrapper" onclick="openModal('https://www.youtube.com/embed/zOD4TevB9bg')"><iframe src="https://www.youtube.com/embed/zOD4TevB9bg" allowfullscreen></iframe></div>
+        <div class="short-wrapper" onclick="openModal('https://www.youtube.com/embed/LW7s5dypqNQ')"><iframe src="https://www.youtube.com/embed/LW7s5dypqNQ" allowfullscreen></iframe></div>
+      </div>
+      <button class="carousel-arrow arrow-right" onclick="scrollShorts(1)">→</button>
+    </div>
+
+    <div class="video-grid">
+      <div class="video-tile" onclick="openModal('https://www.youtube.com/embed/vYEIYMK7Uls')">
+        <h3>Curso completo de Matemáticas 1º ESO</h3>
+        <iframe src="https://www.youtube.com/embed/vYEIYMK7Uls" allowfullscreen></iframe>
+      </div>
+      <div class="video-tile" onclick="openModal('https://www.youtube.com/embed/vMSrAcrH9tg')">
+        <h3>El ABC de la Matemática</h3>
+        <iframe src="https://www.youtube.com/embed/vMSrAcrH9tg" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
   <section id="experimentos">
     <h2>🧪 Experimenta con números</h2>
     <div class="grid">
-      <div class="card" onclick="openModal('modal1')">Círculo mágico de Pi</div>
-      <div class="card" onclick="openModal('modal2')">Simetría con espejos</div>
-      <div class="card" onclick="openModal('modal3')">Fractales de papel</div>
+      <div class="card" onclick="openModal('modal1')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Pi-symbol.svg"/>
+        <p>Círculo mágico de Pi</p>
+      </div>
+      <div class="card" onclick="openModal('modal2')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Symmetrical_reflection.png"/>
+        <p>Simetría con espejos</p>
+      </div>
+      <div class="card" onclick="openModal('modal3')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Sierpinski_triangle_construction.svg"/>
+        <p>Fractales de papel</p>
+      </div>
     </div>
   </section>
 
   <section id="juegos">
     <h2>🎮 Juegos y retos</h2>
     <div class="grid">
-      <div class="card" onclick="openModal('modal4')">Sudoku Matemático</div>
-      <div class="card" onclick="openModal('modal5')">Fractales interactivos</div>
-      <div class="card" onclick="openModal('modal6')">Adivina el número</div>
-      <div class="card" onclick="openModal('modal7')">Rompecódigos</div>
+      <div class="card" onclick="openModal('modal4')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Sudoku_Puzzle_Hard_for_Beginners.png"/>
+        <p>Sudoku Matemático</p>
+      </div>
+      <div class="card" onclick="openModal('modal5')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Mandel_zoom_00_mandelbrot_set.jpg/640px-Mandel_zoom_00_mandelbrot_set.jpg"/>
+        <p>Fractales interactivos</p>
+      </div>
+      <div class="card" onclick="openModal('modal6')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Binary_search_algorithm_diagram.png"/>
+        <p>Adivina el número</p>
+      </div>
+      <div class="card" onclick="openModal('modal7')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Lock-icon.png"/>
+        <p>Rompecódigos</p>
+      </div>
     </div>
   </section>
 
@@ -163,7 +247,8 @@
     <p>¿Sabías que una mujer matemática ayudó a descifrar códigos nazis en la Segunda Guerra Mundial? ¿O que los pitagóricos creían que los números eran dioses? ¡Descúbrelo aquí!</p>
   </section>
 
-  <!-- Modals -->
+  <!-- Modal para vídeos y tarjetas -->
+  <div class="modal" id="videoModal"><div class="modal-content"><button class="close-btn" onclick="closeModal()">×</button><iframe id="modalVideo" src="" allowfullscreen></iframe></div></div>
   <div class="modal" id="modal1"><div class="modal-content"><button class="close-btn" onclick="closeModal()">×</button><h3>Círculo mágico de Pi</h3><iframe src="https://www.youtube.com/embed/lTAwXnqqxTg" allowfullscreen></iframe></div></div>
   <div class="modal" id="modal2"><div class="modal-content"><button class="close-btn" onclick="closeModal()">×</button><h3>Simetría con espejos</h3><img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Symmetrical_reflection.png"/><p>Coloca un espejo y descubre cómo la simetría crea arte visual.</p></div></div>
   <div class="modal" id="modal3"><div class="modal-content"><button class="close-btn" onclick="closeModal()">×</button><h3>Fractales con papel</h3><iframe src="https://www.youtube.com/embed/LXqMZmQeEw8" allowfullscreen></iframe></div></div>
@@ -173,13 +258,22 @@
   <div class="modal" id="modal7"><div class="modal-content"><button class="close-btn" onclick="closeModal()">×</button><h3>Rompecódigos</h3><p>¿Podrías descifrar un código matemático en una sala de escape digital? Pronto disponible...</p></div></div>
 
   <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
+    function scrollShorts(dir) {
+      document.getElementById('shorts-container').scrollBy({ left: dir * 200, behavior: 'smooth' });
+    }
+    function openModal(content) {
+      if (content.startsWith('http')) {
+        document.getElementById('modalVideo').src = content;
+        document.getElementById('videoModal').style.display = 'flex';
+      } else {
+        document.getElementById(content).style.display = 'flex';
+      }
     }
     function closeModal() {
       document.querySelectorAll('.modal').forEach(modal => {
         modal.style.display = 'none';
-        modal.querySelector('iframe')?.setAttribute('src', modal.querySelector('iframe')?.getAttribute('src'));
+        const iframe = modal.querySelector('iframe');
+        if (iframe) iframe.src = iframe.src;
       });
     }
   </script>
