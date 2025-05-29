@@ -67,17 +67,23 @@
       scroll-behavior: smooth;
     }
 
-    .short {
+    .short-wrapper {
       width: 180px;
       aspect-ratio: 9/16;
-      border: none;
-      cursor: pointer;
+      flex: 0 0 auto;
       transition: transform 0.3s;
+      position: relative;
     }
 
-    .short.zoomed {
-      transform: scale(2);
+    .short-wrapper:hover {
+      transform: scale(1.7);
       z-index: 10;
+    }
+
+    .short-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .carousel-arrow {
@@ -205,12 +211,12 @@
     <div class="video-carousel">
       <button class="carousel-arrow arrow-left" onclick="scrollShorts(-1)">←</button>
       <div class="video-scroll" id="shorts-container">
-        <iframe class="short" src="https://www.youtube.com/embed/mhmLlaWCPeI" allowfullscreen></iframe>
-        <iframe class="short" src="https://www.youtube.com/embed/zOD4TevB9bg" allowfullscreen></iframe>
-        <iframe class="short" src="https://www.youtube.com/embed/LW7s5dypqNQ" allowfullscreen></iframe>
-        <iframe class="short" src="https://www.youtube.com/embed/nWgUMvBM6KA" allowfullscreen></iframe>
-        <iframe class="short" src="https://www.youtube.com/embed/7LKnni_f5No" allowfullscreen></iframe>
-        <iframe class="short" src="https://www.youtube.com/embed/yiaxBatvF04" allowfullscreen></iframe>
+        <div class="short-wrapper"><iframe src="https://www.youtube.com/embed/mhmLlaWCPeI" allowfullscreen></iframe></div>
+        <div class="short-wrapper"><iframe src="https://www.youtube.com/embed/zOD4TevB9bg" allowfullscreen></iframe></div>
+        <div class="short-wrapper"><iframe src="https://www.youtube.com/embed/LW7s5dypqNQ" allowfullscreen></iframe></div>
+        <div class="short-wrapper"><iframe src="https://www.youtube.com/embed/nWgUMvBM6KA" allowfullscreen></iframe></div>
+        <div class="short-wrapper"><iframe src="https://www.youtube.com/embed/7LKnni_f5No" allowfullscreen></iframe></div>
+        <div class="short-wrapper"><iframe src="https://www.youtube.com/embed/yiaxBatvF04" allowfullscreen></iframe></div>
       </div>
       <button class="carousel-arrow arrow-right" onclick="scrollShorts(1)">→</button>
     </div>
@@ -261,14 +267,6 @@
     function scrollShorts(dir) {
       container.scrollBy({ left: dir * 200, behavior: 'smooth' });
     }
-
-    // Zoom al hacer clic en un short
-    const shorts = document.querySelectorAll('.short');
-    shorts.forEach(el => {
-      el.addEventListener('click', () => {
-        el.classList.toggle('zoomed');
-      });
-    });
 
     function openModal(src) {
       document.getElementById('modalVideo').src = src;
