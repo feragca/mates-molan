@@ -55,17 +55,50 @@
       color: #ff4500;
     }
 
+    .video-carousel {
+      position: relative;
+    }
+
     .video-scroll {
       display: flex;
       overflow-x: auto;
       gap: 1rem;
       padding: 1rem 0;
+      scroll-behavior: smooth;
     }
 
-    .video-scroll iframe {
-      min-width: 300px;
-      height: 180px;
+    .short {
+      width: 180px;
+      aspect-ratio: 9/16;
       border: none;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .short.zoomed {
+      transform: scale(2);
+      z-index: 10;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff4500;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .arrow-left {
+      left: 0;
+    }
+
+    .arrow-right {
+      right: 0;
     }
 
     .video-grid {
@@ -89,12 +122,58 @@
       color: #111;
     }
 
+    .video-tile iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+
     .comic-box {
       background: #00bfff;
       border: 5px dotted #111;
       padding: 1rem;
       box-shadow: 5px 5px 0 #000;
       margin-top: 1rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 20;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 80%;
+      max-width: 800px;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .modal iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #000;
     }
   </style>
 </head>
@@ -123,34 +202,28 @@
     <h2>Vídeos matemáticos que te van a flipar</h2>
 
     <h3>🎬 Vídeos cortos</h3>
-    <div class="video-scroll">
-      <iframe src="https://www.youtube.com/embed/mhmLlaWCPeI" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/zOD4TevB9bg" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/LW7s5dypqNQ" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/nWgUMvBM6KA" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/7LKnni_f5No" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/yiaxBatvF04" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/qkdQ1CVxNjs" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/lfEzdyZPKCU" allowfullscreen></iframe>
+    <div class="video-carousel">
+      <button class="carousel-arrow arrow-left" onclick="scrollShorts(-1)">←</button>
+      <div class="video-scroll" id="shorts-container">
+        <iframe class="short" src="https://www.youtube.com/embed/mhmLlaWCPeI" allowfullscreen></iframe>
+        <iframe class="short" src="https://www.youtube.com/embed/zOD4TevB9bg" allowfullscreen></iframe>
+        <iframe class="short" src="https://www.youtube.com/embed/LW7s5dypqNQ" allowfullscreen></iframe>
+        <iframe class="short" src="https://www.youtube.com/embed/nWgUMvBM6KA" allowfullscreen></iframe>
+        <iframe class="short" src="https://www.youtube.com/embed/7LKnni_f5No" allowfullscreen></iframe>
+        <iframe class="short" src="https://www.youtube.com/embed/yiaxBatvF04" allowfullscreen></iframe>
+      </div>
+      <button class="carousel-arrow arrow-right" onclick="scrollShorts(1)">→</button>
     </div>
 
     <h3>🧩 Grandes historias matemáticas</h3>
     <div class="video-grid">
-      <div class="video-tile">
+      <div class="video-tile" onclick="openModal('https://www.youtube.com/embed/vYEIYMK7Uls')">
         <h3>Curso completo de Matemáticas 1º ESO</h3>
         <iframe src="https://www.youtube.com/embed/vYEIYMK7Uls" allowfullscreen></iframe>
       </div>
-      <div class="video-tile">
+      <div class="video-tile" onclick="openModal('https://www.youtube.com/embed/vMSrAcrH9tg')">
         <h3>El ABC de la Matemática</h3>
         <iframe src="https://www.youtube.com/embed/vMSrAcrH9tg" allowfullscreen></iframe>
-      </div>
-      <div class="video-tile">
-        <h3>Introducción a la Geometría - ONMAT</h3>
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLULH22uDTOGUY5ME4qeuaMSnZNMSDBZ2t" allowfullscreen></iframe>
-      </div>
-      <div class="video-tile">
-        <h3>Matemáticas 1º ESO - Ejercicios resueltos</h3>
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLX6LxnUFHLIgKRSLvnSlqXecR0DVY5Pwp" allowfullscreen></iframe>
       </div>
     </div>
   </section>
@@ -175,5 +248,37 @@
     <h2>Historias matemáticas increíbles</h2>
     <p>¿Sabías que una mujer matemática ayudó a descifrar códigos nazis en la Segunda Guerra Mundial? ¿O que los pitagóricos creían que los números eran dioses? ¡Descúbrelo aquí!</p>
   </section>
+
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <iframe id="modalVideo" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('shorts-container');
+    function scrollShorts(dir) {
+      container.scrollBy({ left: dir * 200, behavior: 'smooth' });
+    }
+
+    // Zoom al hacer clic en un short
+    const shorts = document.querySelectorAll('.short');
+    shorts.forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.toggle('zoomed');
+      });
+    });
+
+    function openModal(src) {
+      document.getElementById('modalVideo').src = src;
+      document.getElementById('videoModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalVideo').src = '';
+      document.getElementById('videoModal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
