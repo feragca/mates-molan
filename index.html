@@ -54,6 +54,40 @@
       color: #ff4500;
     }
 
+    .video-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .video-scroll iframe {
+      min-width: 300px;
+      height: 180px;
+      border: none;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .video-tile {
+      background: #00bfff;
+      padding: 1rem;
+      box-shadow: 5px 5px 0 #000;
+      border: 3px dotted #111;
+      text-align: center;
+    }
+
+    .video-tile h3 {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      color: #111;
+    }
+
     .video-container {
       position: relative;
       padding-bottom: 56.25%;
@@ -102,8 +136,24 @@
 
   <section id="videos">
     <h2>Vídeos matemáticos que te van a flipar</h2>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/8mve0zR4aJk" frameborder="0" allowfullscreen></iframe>
+
+    <h3>🎬 Vídeos cortos</h3>
+    <div class="video-scroll">
+      <iframe src="https://www.youtube.com/embed/8mve0zR4aJk" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/k6U-i4gXkLM" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/m2MIpDrF7Es" allowfullscreen></iframe>
+    </div>
+
+    <h3>🧩 Grandes historias matemáticas</h3>
+    <div class="video-grid">
+      <div class="video-tile">
+        <h3>La magia del número Pi</h3>
+        <iframe src="https://www.youtube.com/embed/eDiSYp_51iY" allowfullscreen></iframe>
+      </div>
+      <div class="video-tile">
+        <h3>¿Quién fue Ramanujan?</h3>
+        <iframe src="https://www.youtube.com/embed/O9sBf8z2sqo" allowfullscreen></iframe>
+      </div>
     </div>
   </section>
 
