@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Las Matemáticas Molan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', 'Comic Neue', cursive;
+      background: #ffe600;
+      color: #111;
+    }
+
+    header {
+      background: #ff4500;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px #000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #000;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 1rem;
+      color: #ffe600;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #ff4500;
+    }
+
+    section {
+      padding: 2rem;
+      border-bottom: 4px dashed #000;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #ff4500;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .comic-box {
+      background: #00bfff;
+      border: 5px dotted #111;
+      padding: 1rem;
+      box-shadow: 5px 5px 0 #000;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>¡Las Matemáticas Molan!</h1>
+    <p>Explora, juega, experimenta y descubre su lado más sorprendente</p>
+  </header>
+
+  <nav>
+    <a href="#porque">¿Por qué?</a>
+    <a href="#videos">Vídeos</a>
+    <a href="#experimentos">Experimenta</a>
+    <a href="#juegos">Juegos</a>
+    <a href="#historias">Historias</a>
+  </nav>
+
+  <section id="porque">
+    <h2>¿Por qué las mates molan?</h2>
+    <div class="comic-box">
+      <p>Porque están en los videojuegos, en tus series favoritas, en los memes, en el universo, ¡y hasta en las redes sociales!</p>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>Vídeos matemáticos que te van a flipar</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/8mve0zR4aJk" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section id="experimentos">
+    <h2>Experimenta con números</h2>
+    <div class="comic-box">
+      <p>¿Sabías que puedes descubrir el número Pi usando una pizza? ¡Haz clic aquí y pruébalo!</p>
+    </div>
+  </section>
+
+  <section id="juegos">
+    <h2>Juegos y retos</h2>
+    <ul>
+      <li>🧠 Sudoku Matemático</li>
+      <li>🔢 Juego de fractales</li>
+      <li>💥 Adivina el número</li>
+    </ul>
+  </section>
+
+  <section id="historias">
+    <h2>Historias matemáticas increíbles</h2>
+    <p>¿Sabías que una mujer matemática ayudó a descifrar códigos nazis en la Segunda Guerra Mundial? ¿O que los pitagóricos creían que los números eran dioses? ¡Descúbrelo aquí!</p>
+  </section>
+</body>
+</html>
