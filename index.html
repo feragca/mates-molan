@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Las Matemáticas Molan - Shorts con Zoom</title>
+  <title>Las Matemáticas Molan - Versión Completa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body { font-family: 'Comic Sans MS', cursive; margin: 0; background: #fff8dc; color: #111; }
@@ -11,6 +11,7 @@
     section { padding: 2rem; }
     h2 { color: #ff2058; }
 
+    /* Shorts con zoom */
     .shorts-container {
       display: flex;
       overflow-x: auto;
@@ -18,24 +19,29 @@
       scroll-behavior: smooth;
     }
 
-    .short {
+    .short-wrapper {
       flex: 0 0 auto;
       width: 180px;
-      aspect-ratio: 9/16;
+    }
+
+    .short {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      position: relative;
       transition: transform 0.3s ease;
-      cursor: pointer;
     }
 
-    .short:hover {
-      transform: scale(2);
-      z-index: 10;
-    }
-
-    iframe {
+    .short iframe {
       width: 100%;
       height: 100%;
       border: none;
       border-radius: 8px;
+    }
+
+    .short:hover {
+      transform: scale(1.7);
+      z-index: 10;
     }
 
     .video-title {
@@ -44,29 +50,128 @@
       margin-top: 0.5rem;
       max-width: 180px;
     }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-grid iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
+    .comic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .comic-card {
+      background: #ffe600;
+      border: 4px solid #000;
+      box-shadow: 5px 5px 0 #000;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .comic-card img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #000;
+    }
+
+    .comic-button {
+      background: #111;
+      color: #ffe600;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+
+    .comic-button:hover {
+      background: #ffe600;
+      color: #000;
+    }
+
   </style>
 </head>
 <body>
 
 <header>
   <h1>¡Las Matemáticas Molan!</h1>
-  <p>Vídeos cortos con efecto zoom al pasar el ratón</p>
+  <p>Explora, juega y aprende con vídeos, experimentos y juegos divertidos</p>
 </header>
 
-<section>
-  <h2>🎬 Shorts Matemáticos</h2>
+<section id="shorts">
+  <h2>🎬 Shorts matemáticos</h2>
   <div class="shorts-container">
-    <div>
+    <div class="short-wrapper">
       <div class="short"><iframe src="https://www.youtube.com/embed/mhmLlaWCPeI" allowfullscreen></iframe></div>
       <div class="video-title">¿Por qué 0.999... = 1?</div>
     </div>
-    <div>
+    <div class="short-wrapper">
       <div class="short"><iframe src="https://www.youtube.com/embed/LW7s5dypqNQ" allowfullscreen></iframe></div>
       <div class="video-title">El número e explicado con memes</div>
     </div>
-    <div>
+    <div class="short-wrapper">
       <div class="short"><iframe src="https://www.youtube.com/embed/CFmpEkuyzYw" allowfullscreen></iframe></div>
       <div class="video-title">Matemagia de los múltiplos de 9</div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <h2>🎥 Vídeos completos</h2>
+  <div class="video-grid">
+    <div>
+      <iframe src="https://www.youtube.com/embed/vYEIYMK7Uls" allowfullscreen></iframe>
+      <div class="video-title">Curso completo de Matemáticas 1º ESO</div>
+    </div>
+    <div>
+      <iframe src="https://www.youtube.com/embed/kMG8gHyyJRA" allowfullscreen></iframe>
+      <div class="video-title">La belleza de las matemáticas</div>
+    </div>
+  </div>
+</section>
+
+<section id="experimentos">
+  <h2>🧪 Experimenta</h2>
+  <div class="comic-grid">
+    <div class="comic-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Pi-symbol.svg" alt="Pi">
+      <p>Círculo mágico de Pi</p>
+      <button class="comic-button" onclick="window.open('https://www.youtube.com/watch?v=lTAwXnqqxTg', '_blank')">Ver</button>
+    </div>
+    <div class="comic-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Symmetrical_reflection.png" alt="Simetría">
+      <p>Simetría con espejos</p>
+      <button class="comic-button" onclick="window.open('https://www.youtube.com/watch?v=wFz3ZB6oWaI', '_blank')">Explorar</button>
+    </div>
+  </div>
+</section>
+
+<section id="juegos">
+  <h2>🎮 Juegos</h2>
+  <div class="comic-grid">
+    <div class="comic-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Sudoku_Puzzle_Hard_for_Beginners.png" alt="Sudoku">
+      <p>Sudoku Matemático</p>
+      <button class="comic-button" onclick="window.open('https://sudoku.com/es', '_blank')">Jugar</button>
+    </div>
+    <div class="comic-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Mandel_zoom_00_mandelbrot_set.jpg" alt="Fractal">
+      <p>Explora fractales</p>
+      <button class="comic-button" onclick="window.open('https://mathigon.org/graphs/fractals', '_blank')">Explorar</button>
+    </div>
+    <div class="comic-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Binary_search_algorithm_diagram.png" alt="Binario">
+      <p>Adivina el número</p>
+      <button class="comic-button" onclick="window.open('https://www.mathsisfun.com/games/guess-the-number.html', '_blank')">Intentar</button>
     </div>
   </div>
 </section>
